@@ -1,5 +1,6 @@
 package com.hanselone.demo.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -22,6 +23,12 @@ public class User {
     @Column(length = 10,nullable = false)
     private String name;
 
+    @Column(length = 20,nullable = false,unique = true)
+    private String account;
+
+    @Column(length = 255,nullable = false)
+    private String password;
+
     @CreatedDate
     private LocalDateTime created;
 
@@ -30,4 +37,16 @@ public class User {
 
     @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
     private List<Post> posts = new ArrayList<>();
+
+    public User() {
+    }
+
+    @Builder
+    public User(String id,String name,String account,String password){
+        this.user_id = id;
+        this.name = name;
+        this.account = account;
+        this.password = password;
+    }
+
 }

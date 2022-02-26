@@ -24,4 +24,11 @@ public class UserRepository {
         User findUser = em.find(User.class,user_id);
         return findUser;
     }
+
+    public List<User> findByAccount(String account){
+        List<User> users = em.createQuery("select u from User u where u.account = :name",User.class)
+                .setParameter("name", account)
+                .getResultList();
+        return users;
+    }
 }

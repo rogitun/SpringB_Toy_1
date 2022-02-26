@@ -151,16 +151,16 @@ class PostTest {
         post2.setBios("노트북");
         post2.setCategory(category);
 
-        User user = new User();
-        user.setName("작성자");
-
-        post.setWriter(user);
-        post2.setWriter(user);
-        user.getPosts().add(post);
-        user.getPosts().add(post2);
-
-        categoryRepository.save(first);
-        userRepository.save(user);
+       // User user = new User();
+//        user.setName("작성자");
+//
+//        post.setWriter(user);
+//        post2.setWriter(user);
+//        user.getPosts().add(post);
+//        user.getPosts().add(post2);
+//
+//        categoryRepository.save(first);
+//        userRepository.save(user);
 
         List<Post> all = postRepository.findByCategory("전체");
         List<Post> digital = postRepository.findByCategory("디지털");

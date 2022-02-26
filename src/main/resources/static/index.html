@@ -1,9 +1,12 @@
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Hello</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
     <h1>hihi</h1>
+    <br>
+    <a sec:authorize="isAnonymous()" th:href="@{/user/login}">로그인</a>
+
 </body>
 </html>

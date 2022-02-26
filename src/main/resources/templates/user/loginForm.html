@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+    <form th:action="@{/user/login}" method="post">
+        <input type="text" name="account" placeholder="아이디"><hr>
+        <input type="password" name="password" placeholder="비밀번호"><hr>
+        <button type="submit">로그인</button>
+    </form>
+</body>
+</html>
