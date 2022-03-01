@@ -26,8 +26,8 @@ public class UserRepository {
     }
 
     public List<User> findByAccount(String account){
-        List<User> users = em.createQuery("select u from User u where u.account = :name",User.class)
-                .setParameter("name", account)
+        List<User> users = em.createQuery("select u from User u where u.account = :account",User.class)
+                .setParameter("account", account)
                 .getResultList();
         return users;
     }

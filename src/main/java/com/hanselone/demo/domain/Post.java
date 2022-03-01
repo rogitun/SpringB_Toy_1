@@ -1,7 +1,6 @@
 package com.hanselone.demo.domain;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.springframework.data.annotation.CreatedDate;
 
@@ -11,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity @Getter @Setter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post extends BaseCreated{
 
     @Id
@@ -18,12 +18,13 @@ public class Post extends BaseCreated{
     @GenericGenerator(name = "uuid2",strategy = "uuid2")
     private String post_id;
 
-    @Column(length = 20,nullable = false)
+    @Column(length = 20)
     private String title;
 
-    @Column(columnDefinition = "TEXT",nullable = false)
+    @Column(nullable = true)
     private String bios;
-    
+
+    @Column(columnDefinition = "integer default 0")
     private int suggestion; //추천수
 
     @ManyToOne(fetch = FetchType.LAZY)
@@ -36,5 +37,13 @@ public class Post extends BaseCreated{
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
+
+    @Builder
+    public Post(String id,String title,String bios,User writer){
+        this.post_id = id;
+        this.title = title;
+        this.bios = bios;
+        this.writer = writer;
+    }
 
 }

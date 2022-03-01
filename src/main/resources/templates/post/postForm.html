@@ -1,0 +1,13 @@
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<form th:action="@{/post/submit}" method="post" th:object="${post}">
+    <input type="text" th:field="*{title}" placeholder="글 제목"><hr>
+    <textarea th:field="*{bios}" placeholder="본문"></textarea><hr>
+    <button type="submit">작성</button>
+</form>
+</body>
+</html>

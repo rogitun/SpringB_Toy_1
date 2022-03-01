@@ -38,7 +38,7 @@ public class User {
     @OneToMany(mappedBy = "writer",cascade = CascadeType.ALL)
     private List<Post> posts = new ArrayList<>();
 
-    public User() {
+    protected User() {
     }
 
     @Builder

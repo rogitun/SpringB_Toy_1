@@ -2,12 +2,10 @@ package com.hanselone.demo.repository;
 
 import com.hanselone.demo.domain.Post;
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
-
+import org.springframework.transaction.annotation.Transactional;
 import javax.persistence.EntityManager;
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 
 @Repository
@@ -16,6 +14,7 @@ public class PostRepository {
 
     private final EntityManager em;
 
+    @Transactional
     public void save(Post post){
         em.persist(post);
     }
@@ -58,6 +57,7 @@ public class PostRepository {
     //카테고리 무관 전체
     public List<Post> findAll(){
         List<Post> postAll = em.createQuery("select p from Post p", Post.class).getResultList();
+        if(postAll == null)return null;
         return postAll;
     }
     
