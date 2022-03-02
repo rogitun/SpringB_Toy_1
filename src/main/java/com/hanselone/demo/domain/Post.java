@@ -46,4 +46,8 @@ public class Post extends BaseCreated{
         this.writer = writer;
     }
 
+    public void changeSuggestion(int number){
+        this.suggestion += number;
+    }
+
 }

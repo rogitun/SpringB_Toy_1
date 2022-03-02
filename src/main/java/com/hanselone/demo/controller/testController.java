@@ -18,9 +18,8 @@ public class testController {
     @GetMapping("/")
     public String test(Model model) {
 
-        List<Post> all = postRepository.findAll();
+        List<Post> all = postRepository.findBySuggestion();
         model.addAttribute("posts", all);
-
         return "hello/hello";
 
     }

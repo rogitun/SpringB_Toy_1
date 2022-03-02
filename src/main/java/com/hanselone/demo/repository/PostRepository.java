@@ -19,6 +19,11 @@ public class PostRepository {
         em.persist(post);
     }
 
+    public Post findById(String id){
+        Post post = em.find(Post.class, id);
+        return post;
+    }
+
     //글 제목으로 검색
     public List<Post> findPosts(String title){
         List posts = em.createQuery("select p from Post p where p.title like concat('%',:title,'%')",Post.class)
@@ -57,12 +62,16 @@ public class PostRepository {
     //카테고리 무관 전체
     public List<Post> findAll(){
         List<Post> postAll = em.createQuery("select p from Post p", Post.class).getResultList();
-        if(postAll == null)return null;
         return postAll;
     }
     
     
-
+    public List<Post> findBySuggestion(){
+        return em.createQuery("select p from Post p order by p.suggestion desc",Post.class)
+                .setFirstResult(0)
+                .setMaxResults(5)
+                .getResultList();
+    }
 
 
 

@@ -1,5 +1,6 @@
 package com.hanselone.demo.service;
 
+import com.hanselone.demo.domain.Post;
 import com.hanselone.demo.domain.User;
 import com.hanselone.demo.dto.PostDto;
 import com.hanselone.demo.repository.PostRepository;
@@ -23,5 +24,11 @@ public class PostService {
         List<User> byAccount = userRepository.findByAccount(postDto.getUsername());
         postDto.setWriter(byAccount.get(0));
         postRepository.save(postDto.toEntity());
+    }
+
+    @Transactional
+    public void changeSuggestion(String postId,int number){
+        Post foundPost = postRepository.findById(postId);
+        foundPost.changeSuggestion(number);
     }
 }
